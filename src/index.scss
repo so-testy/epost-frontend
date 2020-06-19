@@ -1,0 +1,40 @@
+@import './variables.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+button {
+    background: $main-color;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.23s ease-in-out;
+
+    &:hover {
+        background: $secondary-color;
+    }
+}
+
+input[type='text'], textarea {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px 14px;
+    outline: none;
+    transition: all 0.23s ease-in-out;
+    font-family: Arial, sans-serif;
+
+    &:focus {
+        border-color: #bbb;
+        color: #333;
+    }
+}

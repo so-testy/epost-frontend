@@ -1,0 +1,189 @@
+@import '../../variables.scss';
+
+.wrapper {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 10px;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .aside {
+        display: flex;
+        flex-direction: column;
+
+        .folder-list {
+            margin: 0;
+            padding: 0;
+
+            a {
+                text-decoration: none;
+            }
+
+            &__folder {
+                list-style: none;
+                padding: 8px 10px;
+                margin-bottom: 2px;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                color: black;
+
+                &:hover {
+                    background: #fafafa;
+                }
+
+                &--active {
+                    background: #eee;
+                    color: $secondary-color;
+                    font-weight: 600;
+
+                    &:hover {
+                        background: #eee;
+                    }
+                }
+            }
+        }
+
+        .create-email {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .mail-indicator {
+            font-weight: 600;
+            color: $secondary-color;
+        }
+    }
+
+    .content {
+        border-radius: 4px;
+        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        width: 100%;
+        min-height: 600px;
+        max-height: calc(100vh - 20px);
+        height: 100%;
+
+        .email-list {
+            margin: 0;
+            padding: 0;
+            overflow-y: scroll;
+
+            &__email {
+                list-style: none;
+                cursor: pointer;
+
+                &:first-child {
+                    border-top-left-radius: 4px;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid #efefef;
+                }
+
+                &:hover {
+                    background-color: #fafafa;
+                }
+
+                &--unread {
+                    background-color: $unread-email-color;
+
+                    &:hover {
+                        background-color: $unread-email-color-hover;
+                    }
+
+                    .email__title {
+                        font-weight: 600;
+                    }
+                }
+
+                &--active {
+                    background-color: $main-color;
+                    color: white;
+
+                    &:hover {
+                        background-color: $main-color;
+                    }
+                }
+
+                .email__title {
+                    padding: 8px 12px 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    span {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .email__unread-mark {
+                        background-color: $secondary-color;
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        margin-left: 4px;
+                    }
+
+                    .email__date {
+                        font-weight: 500;
+                    }
+                }
+
+                .email__description {
+                    padding: 6px 12px 8px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .email-content {
+            position: relative;
+
+            &__title {
+                padding: 10px $email-side-padding;
+                margin: 0;
+                font-size: 24px;
+            }
+
+            &__meta {
+                padding: 0 $email-side-padding 10px;
+
+                .meta__from {
+                    margin-bottom: 4px;
+                }
+
+                .meta__to,
+                .meta__from {
+                    color: #252525;
+
+                    span {
+                        color: #7f87a0;
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            &__body {
+                margin-top: 10px;
+                padding: 0 $email-side-padding;
+            }
+
+            .choose-email {
+                color: #aaa;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%);
+            }
+        }
+    }
+}
