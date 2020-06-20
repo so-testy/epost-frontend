@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import './index.scss';
 
@@ -42,6 +42,10 @@ const Login = (props) => {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </fieldset>
                 <button onClick={sendLogin}>Войти</button>
+
+                <Link className="register" to="/registration">
+                    Или зарегистрироваться
+                </Link>
             </form>
         </div>
     );
