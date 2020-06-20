@@ -3,93 +3,148 @@
 .catalog-page {
 
     .form-wrapper {
-        padding: 100px 20px 50px;
-        background: #d9d2e9;
-        box-shadow: 0px 0px 3px 3px #4e4c4c61;
+        background: #eeeeee;
+        box-shadow: 0px 0px 3px 3px #4e4c4c40;
 
-        form {
+        .main {
             max-width: 960px;
             margin-left: auto;
             margin-right: auto;
             padding: 0 20px 20px;
-            font-size: 1.35em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-            fieldset {
+            .title {
+                font-family: "font900", "Arial";
+                font-size: 1.9em;
+                padding: 30px 0px 50px;
+
+                .logo {
+                    text-shadow: 0px 1px 0px black;
+                    margin-right: 15px;
+
+                    span:nth-of-type(1) {
+                        color: white;
+                    }
+
+                    span:nth-of-type(2) {
+                        color: #628BF5;
+                    }
+
+                    span:nth-of-type(3) {
+                        color: #F95E5E;
+                    }
+                }
+            }
+
+            form {
+                font-size: 1.2em;
                 display: flex;
-                flex-direction: column;
-                border: none;
-                padding: 0;
-                margin: 0;
-                margin-right: 20px;
-                margin-bottom: 10px;
+                justify-content: center;
+                align-items: center;
 
-                label {
-                    font-size: .8em;
+                fieldset {
+                    display: flex;
+                    flex-direction: column;
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    margin-right: 20px;
                     margin-bottom: 10px;
+
+                    label {
+                        font-family: "font700";
+                        font-size: .9em;
+                        margin-bottom: 10px;
+                    }
+
+                    .department-num {
+                        width: 120px;
+                        font-size: .9em !important;
+                        padding: 20px 0px 20px 20px !important;
+                    }
+
+                    .department-name .Dropdown-control {
+                        cursor: pointer;
+                        width: 430px !important;
+                        padding: 20px 0px 20px 20px !important;
+                    }
+
+                    .city .Dropdown-control {
+                        cursor: pointer;
+                        width: 150px !important;
+                        padding: 20px 0px 20px 20px !important;
+                    }
                 }
 
-                .department-num {
-                    width: 120px;
-                    font-size: .9em !important;
-                    padding: 20px 0px 20px 20px !important;
-                }
-
-                .department-name .Dropdown-control {
+                button {
                     cursor: pointer;
-                    width: 430px !important;
-                    padding: 20px 0px 20px 20px !important;
-                }
-
-                .city .Dropdown-control {
+                    background: #5a5ade;
+                    border: none;
+                    color: white;
+                    padding: 10px;
                     cursor: pointer;
-                    width: 150px !important;
-                    padding: 20px 0px 20px 20px !important;
-                }
-            }
+                    border-radius: 4px;
+                    transition: all 0.23s ease-in-out;
+                    font-weight: 600;
+                    height: 60px;
+                    width: 160px;
+                    margin-top: 17px;
+                    font-family: "font700";
+                    font-size: .9em;
 
-            button {
-                background: #674ea7;
-                border: none;
-                color: white;
-                cursor: pointer;
-                border-radius: 4px;
-                transition: all 0.23s ease-in-out;
-                font-size: 1em;
-                height: 60px;
-                width: 160px;
-                margin-top: 17px;
-            }
-        }
-    }
-
-    .emails {
-        max-width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 50px;
-
-        .item {
-            border: 1px solid #aaa;
-            border-radius: 5px;
-            padding: 20px 30px;
-            
-            .name {
-                font-size: 1.7em;
-                font-weight: 500;
-            }
-
-            .emails {
-                margin-top: 20px;
-
-                .our,
-                .origin {
-                    margin-top: 10px;
-                    font-size: 1.3em;
+                    &:disabled {
+                        opacity: 0.7;
+                    }
                 }
             }
         }
     }
+}
+
+.emails {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+
+    .item {
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        padding: 20px 30px;
+
+        .name {
+            font-family: $font-900;
+            font-size: 1.7em;
+            font-weight: 500;
+        }
+
+        .address {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #333;
+
+            span {
+                margin-right: 10px;
+            }
+        }
+
+        .emails {
+            margin-top: 25px;
+
+            .title {
+                font-family: $font-900;
+                font-size: 1.2em;
+            }
+
+            .our,
+            .origin {
+                display: inline-block;
+                background: #eee;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 10px;
+                font-size: 1.2em;
+            }
+        }
+    }
+
 }

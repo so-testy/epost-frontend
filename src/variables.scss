@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:500,600&display=swap&subset=cyrillic');
+
+$font-300: "font300", "Arial";
+$font-500: "font500", "Arial";
+$font-700: "font700", "Arial";
+$font-900: "font900", "Arial";
+
 $main-color: #5a5ade;
 $secondary-color: #3f3fd9;
 
@@ -7,3 +14,23 @@ $unread-email-color-hover: #dbf1fd;
 $email-side-padding: 16px;
 
 $main-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+
+@font-face {
+    font-family: "font300";
+    src: url("/static/fonts/MuseoSansCyrl-300.woff2");
+}
+
+@font-face {
+    font-family: "font500";
+    src: url("/static/fonts/MuseoSansCyrl-500.woff2");
+}
+
+@font-face {
+    font-family: "font700";
+    src: url("/static/fonts/MuseoSansCyrl-700.woff2");
+}
+
+@font-face {
+    font-family: "font900";
+    src: url("/static/fonts/MuseoSansCyrl-900.woff2");
+}
