@@ -76,9 +76,22 @@ const Inbox = (props) => {
         props.history.push('/login');
     }
 
+    const sendMail = ({ to, subject, text }) => {
+        axios.post('/email/send', { to, subject, text }, { withCredentials: true }).then((email) => {
+            axios.get('/email/outcoming', { withCredentials: true }).then(response => {
+                setOutcommig(response.data.mails.map((email, index) => ({
+                    ...email,
+                    id: index,
+                    date: (new Date(email.createdAt)).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+                })));
+            });
+            closeModal();
+        });
+    };
+
     return (
         <>
-            <NewEmail isModalOpen={isModalOpen} closeModal={closeModal} />
+            <NewEmail isModalOpen={isModalOpen} sendEmail={sendMail} closeModal={closeModal} />
             <header>
                 <div className="wrapper">
                     <div className="logo">

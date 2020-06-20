@@ -6,17 +6,10 @@ import './index.scss';
 
 Modal.setAppElement('#root');
 
-const NewEmail = ({ closeModal, isModalOpen }) => {
+const NewEmail = ({ closeModal, isModalOpen, sendEmail }) => {
     const [to, setTo] = useState('');
     const [subject, setSubject] = useState('');
     const [text, setText] = useState('');
-
-    const sendMail = (e) => {
-        e.preventDefault();
-        axios.post('/email/send', { to, subject, text }, { withCredentials: true }).then(() => {
-            closeModal();
-        });
-    };
 
     return (
         <Modal
@@ -31,7 +24,10 @@ const NewEmail = ({ closeModal, isModalOpen }) => {
                     <input type="text" placeholder="Кому" onChange={e => setTo(e.target.value)} value={to} />
                     <input type="text" placeholder="Тема" onChange={e => setSubject(e.target.value)} value={subject} />
                     <textarea onChange={e => setText(e.target.value)} value={text} placeholder="Введите текст письма" />
-                    <button onClick={sendMail}>Отправить</button>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        sendEmail({ to, subject, text })
+                    }}>Отправить</button>
                 </form>
             </div>
         </Modal>
