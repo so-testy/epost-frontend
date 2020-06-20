@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import '../../variables.scss';
 
 * {
     box-sizing: border-box;
@@ -19,13 +19,15 @@ button {
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.23s ease-in-out;
+    font-size: 14px;
+    font-weight: 600;
 
     &:hover {
         background: $secondary-color;
     }
 }
 
-input[type='text'], textarea {
+input[type='text'], input[type='password'], input[type='email'], textarea {
     border-radius: 4px;
     border: 1px solid #ccc;
     padding: 10px 14px;
@@ -34,7 +36,7 @@ input[type='text'], textarea {
     font-family: Arial, sans-serif;
 
     &:focus {
-        border-color: #bbb;
+        border-color: #aaa;
         color: #333;
     }
 }

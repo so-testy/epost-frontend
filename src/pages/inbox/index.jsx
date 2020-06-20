@@ -9,6 +9,11 @@ import NewEmail from '../../components/NewEmail';
 
 import './index.scss';
 
+const folders = {
+    income: incomingList,
+    outcome: outcomingList,
+};
+
 const Inbox = (props) => {
     const [emailList, setEmailList] = useState([]);
     const [currentEmailId, setCurrentEmailId] = useState(null);
@@ -32,7 +37,7 @@ const Inbox = (props) => {
     const openModal = useCallback(() => setIsOpen(true), []);
 
     useEffect(() => {
-        const list = folder === 'income' ? incomingList : outcomingList;
+        const list = folders[folder];
 
         setEmailList(
             list.map((email, index) => ({
@@ -44,8 +49,8 @@ const Inbox = (props) => {
         setCurrentEmailId(null);
     }, [folder]);
 
-    const currentEmail = emailList.find((email) => email.id === currentEmailId);
     const unreadNumber = emailList.filter((email) => email.unread === true).length;
+    const currentEmail = emailList.find((email) => email.id === currentEmailId);
 
     return (
         <>

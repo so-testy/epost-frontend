@@ -61,11 +61,11 @@
 
     .content {
         border-radius: 4px;
-        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: $main-box-shadow;
         display: grid;
         grid-template-columns: 300px 1fr;
         width: 100%;
-        min-height: 600px;
+        min-height: 400px;
         max-height: calc(100vh - 20px);
         height: 100%;
 
@@ -182,7 +182,7 @@
                 position: absolute;
                 left: 50%;
                 top: 50%;
-                transform: translate(-50%);
+                transform: translate(-50%, -50%);
             }
         }
     }
