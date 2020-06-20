@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classname from 'classname';
+import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 
-import { incomingList, outcomingList } from './stub';
+// import { incomingList, outcomingList } from './stub';
 import EmailList from './EmailList';
 import EmailView from './EmailView';
 import NewEmail from '../../components/NewEmail';
 
+
 import './index.scss';
 
 const folders = {
-    income: incomingList,
-    outcome: outcomingList,
+    income: [],
+    outcome: [],
 };
 
 const Inbox = (props) => {
@@ -49,6 +51,16 @@ const Inbox = (props) => {
         setCurrentEmailId(null);
     }, [folder]);
 
+    useEffect(() => {
+        axios.get('/api/v1/email/incoming').then(response => {
+            folders.income = response.emails;
+        });
+
+        axios.get('/api/v1/email/outcoming').then(response => {
+            folders.outcome = response.emails;
+        });
+    }, []);
+
     const unreadNumber = emailList.filter((email) => email.unread === true).length;
     const currentEmail = emailList.find((email) => email.id === currentEmailId);
 
@@ -73,6 +85,12 @@ const Inbox = (props) => {
                             </li>
                         </Link>
                         <li className="folder-list__folder">Спам</li>
+                        <hr />
+                        <Link to="/catalog" target="__blank">
+                            <li className={classname({ 'folder-list__folder': true })}>
+                                Каталог адресов государств. организаций
+                            </li>
+                        </Link>
                     </ul>
                 </div>
                 <div className="content">

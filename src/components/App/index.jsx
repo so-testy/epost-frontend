@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import Inbox from '../../pages/inbox';
 import Login from '../../pages/login';
+import Catalog from '../../pages/catalog';
 import Registration from '../../pages/registration';
 
 import './index.scss';
@@ -19,6 +20,9 @@ const App = (props) => {
                 </Route>
                 <Route exact path="/registration">
                     <Registration />
+                </Route>
+                <Route exact path="/catalog">
+                    <Catalog />
                 </Route>
                 <Route path="*">
                     <Redirect to="/inbox/income" />
