@@ -11,15 +11,13 @@ import NewEmail from '../../components/NewEmail';
 
 import './index.scss';
 
-const folders = {
-    income: [],
-    outcome: [],
-};
-
 const Inbox = (props) => {
     const [emailList, setEmailList] = useState([]);
     const [currentEmailId, setCurrentEmailId] = useState(null);
     const [isModalOpen, setIsOpen] = useState(false);
+
+    const [incomming, setIncommig] = useState([]);
+    const [outcoming, setOutcommig] = useState([]);
 
     const { folder } = useParams();
 
@@ -39,33 +37,33 @@ const Inbox = (props) => {
     const openModal = useCallback(() => setIsOpen(true), []);
 
     useEffect(() => {
-        const list = folders[folder];
+        const list = folder === 'income' ? incomming : outcoming;
 
         setEmailList(
             list.map((email, index) => ({
                 ...email,
                 id: index,
-                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+                date: (new Date(email.createdAt)).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
             })),
         );
         setCurrentEmailId(null);
-    }, [folder]);
+    }, [incomming, outcoming, folder]);
 
     useEffect(() => {
         axios.get('/email/incoming', { withCredentials: true }).then(response => {
-            folders.income = response.data.mails.map((email, index) => ({
+            setIncommig(response.data.mails.map((email, index) => ({
                 ...email,
                 id: index,
-                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
-            }));
+                date: (new Date(email.createdAt)).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+            })));
         });
 
         axios.get('/email/outcoming', { withCredentials: true }).then(response => {
-            folders.outcome = response.data.mails.map((email, index) => ({
+            setOutcommig(response.data.mails.map((email, index) => ({
                 ...email,
                 id: index,
-                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
-            }));
+                date: (new Date(email.createdAt)).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+            })));
         });
     }, []);
 

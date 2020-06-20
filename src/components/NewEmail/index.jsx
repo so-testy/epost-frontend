@@ -11,10 +11,12 @@ const NewEmail = ({ closeModal, isModalOpen }) => {
     const [subject, setSubject] = useState('');
     const [text, setText] = useState('');
 
-    const sendMail = useCallback((e) => {
+    const sendMail = (e) => {
         e.preventDefault();
-        axios.post('/email/send', { to, subject, text }).then(console.log);
-    }, [to, subject, text]);
+        axios.post('/email/send', { to, subject, text }, { withCredentials: true }).then(() => {
+            closeModal();
+        });
+    };
 
     return (
         <Modal

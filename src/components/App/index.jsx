@@ -15,6 +15,11 @@ const App = (props) => {
     useEffect(() => {
         axios.get('/auth/profile', { withCredentials: true }).then(data => {
             setUser(data);
+        }).catch(()=> {
+            localStorage.setItem('signedIn', false);
+            if (!localStorage.getItem('signedIn')) {
+                window.location.replace("/login");
+            }
         })
     }, []);
 
