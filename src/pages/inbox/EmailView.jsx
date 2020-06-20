@@ -14,7 +14,7 @@ const EmailList = ({ currentEmail }) => {
                             <span>Кому</span>{currentEmail.to}
                         </div>
                     </div>
-                    <div className="email-content__body">{currentEmail.html ? currentEmail.html: currentEmail.text}</div>
+                    <div className="email-content__body">{currentEmail.html === 'true' ? currentEmail.html: currentEmail.text}</div>
                 </>
             ) : (
                 <div className="choose-email">Выберите письмо для просмотра</div>
