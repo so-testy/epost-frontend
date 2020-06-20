@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import App from './components/App';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1';
+axios.defaults.baseURL = 'http://епочта.рф:3000/api/v1';
 
 ReactDOM.render(
     <React.StrictMode>
