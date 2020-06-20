@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classname from 'classname';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, withRouter } from 'react-router-dom';
 
 // import { incomingList, outcomingList } from './stub';
 import EmailList from './EmailList';
@@ -52,21 +52,49 @@ const Inbox = (props) => {
     }, [folder]);
 
     useEffect(() => {
-        axios.get('/api/v1/email/incoming').then(response => {
-            folders.income = response.emails;
+        axios.get('/email/incoming', { withCredentials: true }).then(response => {
+            folders.income = response.data.mails.map((email, index) => ({
+                ...email,
+                id: index,
+                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+            }));
         });
 
-        axios.get('/api/v1/email/outcoming').then(response => {
-            folders.outcome = response.emails;
+        axios.get('/email/outcoming', { withCredentials: true }).then(response => {
+            folders.outcome = response.data.mails.map((email, index) => ({
+                ...email,
+                id: index,
+                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+            }));
         });
     }, []);
 
     const unreadNumber = emailList.filter((email) => email.unread === true).length;
     const currentEmail = emailList.find((email) => email.id === currentEmailId);
 
+    const logout = async () => {
+        await axios.get('/auth/logout', { withCredentials: true });
+        localStorage.setItem('signedIn', false);
+        props.history.push('/login');
+    }
+
     return (
         <>
             <NewEmail isModalOpen={isModalOpen} closeModal={closeModal} />
+            <header>
+                <div className="wrapper">
+                    <div className="logo">
+                        <span>Е</span>
+                        <span>ПОЧТА</span>
+                        <span>.РФ</span>
+                    </div>
+                    <div className="profile">
+                        <button onClick={logout}>
+                            Выйти
+                        </button>
+                    </div>
+                </div>
+            </header>
             <div className="wrapper">
                 <div className="aside">
                     <button className="create-email" onClick={openModal}>
@@ -88,7 +116,7 @@ const Inbox = (props) => {
                         <hr />
                         <Link to="/catalog" target="__blank">
                             <li className={classname({ 'folder-list__folder': true })}>
-                                Каталог адресов государств. организаций
+                                Каталог адресов
                             </li>
                         </Link>
                     </ul>
@@ -102,4 +130,4 @@ const Inbox = (props) => {
     );
 };
 
-export default Inbox;
+export default withRouter(Inbox);
