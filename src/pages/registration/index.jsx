@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
@@ -14,13 +14,18 @@ const Registration = (props) => {
     const sendRegister = useCallback(
         (e) => {
             e.preventDefault();
-            axios
-                .post('/auth/register', { login, password, additionalAddress })
-                .then((res) => history.push('/inbox/income'))
-                .catch(console.log);
+            axios.post('/auth/register', { login, password, additionalAddress }, { withCredentials: true }).then((res) => {
+                history.push('/login');
+            });
         },
         [login, password, additionalAddress, history],
     );
+
+    useEffect(() => {
+        if (localStorage.getItem('signedIn') === 'true') {
+            history.push('/inbox/income');
+        }
+    }, [history]);
 
     return (
         <div className="login-box">

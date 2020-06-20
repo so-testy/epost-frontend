@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classname from 'classname';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 import { incomingList, outcomingList } from './stub';
 import EmailList from './EmailList';
@@ -10,7 +11,7 @@ import NewEmail from '../../components/NewEmail';
 import './index.scss';
 
 const folders = {
-    income: incomingList,
+    income: '',
     outcome: outcomingList,
 };
 
@@ -18,6 +19,8 @@ const Inbox = (props) => {
     const [emailList, setEmailList] = useState([]);
     const [currentEmailId, setCurrentEmailId] = useState(null);
     const [isModalOpen, setIsOpen] = useState(false);
+
+    const history = props.history;
 
     const { folder } = useParams();
 
@@ -37,17 +40,23 @@ const Inbox = (props) => {
     const openModal = useCallback(() => setIsOpen(true), []);
 
     useEffect(() => {
-        const list = folders[folder];
+        if (localStorage.getItem('signedIn') !== 'true') {
+            history.push('/login');
+        }
 
-        setEmailList(
-            list.map((email, index) => ({
-                ...email,
-                id: index,
-                date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
-            })),
-        );
         setCurrentEmailId(null);
-    }, [folder]);
+
+        axios.get('/email/incoming', { withCredentials: true }).then(({ mails }) => {
+            setEmailList(
+                mails.map((email, index) => ({
+                    ...email,
+                    id: index,
+                    date: email.date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' }),
+                })),
+            );
+        }).catch(console.log)
+
+    }, [folder, history]);
 
     const unreadNumber = emailList.filter((email) => email.unread === true).length;
     const currentEmail = emailList.find((email) => email.id === currentEmailId);
@@ -84,4 +93,4 @@ const Inbox = (props) => {
     );
 };
 
-export default Inbox;
+export default withRouter(Inbox);
