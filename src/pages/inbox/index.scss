@@ -1,23 +1,22 @@
 @import '../../variables.scss';
 
 header {
-    background: #eeeeee;
-    box-shadow: 0px 0px 3px 2px #4e4c4c40;
-    height: 60px;
-    margin-bottom: 20px;
+    // background: #eeeeee;
+    // box-shadow: 0px 0px 3px 2px #4e4c4c40;
+    // height: 60px;
+    // margin-bottom: 20px;
 
     .wrapper {
         display: flex;
-        padding-top: 12px;
+        // padding-top: 12px;
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
 
         .logo {
-            font-family: "font900", "Arial";
-            font-size: 1.9em;
-            text-shadow: 0px 1px 0px black;
-            margin-right: 15px;
+            width: 180px;
+            display: flex;
+            align-items: center;
 
             span:nth-of-type(1) {
                 color: white;
@@ -33,6 +32,11 @@ header {
         }
 
         .profile {
+            .user-email {
+                font-weight: 600;
+                margin-right: 10px;
+            }
+
             margin-left: auto;
         }
     }
@@ -56,6 +60,21 @@ header {
 
             a {
                 text-decoration: none;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid #eee;
+                width: 292px;
+            }
+
+            .external-link-icon {
+                width: 14px;
+            }
+
+            .catalog-link {
+                display: flex;
+                justify-content: space-between;
             }
 
             &__folder {
@@ -104,13 +123,14 @@ header {
         grid-template-columns: 300px 1fr;
         width: 100%;
         min-height: 400px;
-        max-height: calc(100vh - 20px);
+        max-height: calc(100vh - 76px);
         height: 100%;
 
         .email-list {
             margin: 0;
             padding: 0;
-            overflow-y: scroll;
+            overflow-y: auto;
+            border-right: 1px solid #efefef;
 
             &__email {
                 list-style: none;
@@ -144,6 +164,10 @@ header {
                     background-color: $main-color;
                     color: white;
 
+                    .email__title {
+                        font-weight: 600;
+                    }
+
                     &:hover {
                         background-color: $main-color;
                     }
@@ -158,6 +182,10 @@ header {
                     span {
                         display: flex;
                         align-items: center;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 200px;
                     }
 
                     .email__unread-mark {

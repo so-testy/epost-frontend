@@ -7,23 +7,23 @@ import './index.scss';
 const Registration = (props) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [additionalAddress, setAdditionalAddress] = useState('');
+    // const [additionalAddress, setAdditionalAddress] = useState('');
 
     const history = props.history;
     console.log(process.env.SERVER_HOST)
     const sendRegister = useCallback(
         (e) => {
             e.preventDefault();
-            axios.post('/auth/register', { login, password, additionalAddress }, { withCredentials: true }).then((res) => {
-                history.push('/login');
+            axios.post('/auth/register', { login, password }, { withCredentials: true }).then((res) => {
+                history.push('/вход');
             });
         },
-        [login, password, additionalAddress, history],
+        [login, password, history],
     );
 
     useEffect(() => {
         if (localStorage.getItem('signedIn') === 'true') {
-            history.push('/inbox/income');
+            history.push('/почта/входящие');
         }
     }, [history]);
 
@@ -39,10 +39,10 @@ const Registration = (props) => {
                     <label>Пароль</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </fieldset>
-                <fieldset>
+                {/* <fieldset>
                     <label>Запасной адрес</label>
                     <input type="email" value={additionalAddress} onChange={(e) => setAdditionalAddress(e.target.value)} />
-                </fieldset>
+                </fieldset> */}
                 <button onClick={sendRegister}>Зарегистрироваться</button>
             </form>
         </div>

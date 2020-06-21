@@ -17,7 +17,8 @@ const Login = (props) => {
                 .post('/auth/login', { login, password }, { withCredentials: true })
                 .then((res) => {
                     localStorage.setItem('signedIn', true);
-                    history.push('/inbox/income');
+                    window.location.replace('/почта/входящие');
+                    // history.push('/почта/входящие');
                 })
         },
         [login, password, history],
@@ -25,7 +26,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (localStorage.getItem('signedIn') === 'true') {
-            history.push('/inbox/income');
+            history.push('/почта/входящие');
         }
     }, [history]);
 
@@ -43,7 +44,7 @@ const Login = (props) => {
                 </fieldset>
                 <button onClick={sendLogin}>Войти</button>
 
-                <Link className="register" to="/registration">
+                <Link className="register" to="/регистрация">
                     Или зарегистрироваться
                 </Link>
             </form>

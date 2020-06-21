@@ -3,8 +3,7 @@
 .catalog-page {
 
     .form-wrapper {
-        background: #eeeeee;
-        box-shadow: 0px 0px 3px 3px #4e4c4c40;
+        background: #efefef;
 
         .main {
             max-width: 960px;
@@ -15,11 +14,13 @@
             .title {
                 font-family: "font900", "Arial";
                 font-size: 1.9em;
-                padding: 30px 0px 50px;
+                padding: 30px 0px 30px;
 
                 .logo {
-                    text-shadow: 0px 1px 0px black;
-                    margin-right: 15px;
+                    width: 180px;
+                    display: flex;
+                    align-items: center;
+                    margin-left: 0.5px;
 
                     span:nth-of-type(1) {
                         color: white;
@@ -57,25 +58,43 @@
                     }
 
                     .department-num {
-                        width: 120px;
-                        font-size: .9em !important;
-                        padding: 20px 0px 20px 20px !important;
+                        width: 260px;
+                        padding: 13px 0px 14px 15px !important;
+                        font-size: 1em;
+                    }
+
+                    .Dropdown-control {
+                        cursor: pointer;
+                        padding: 13px 0px 14px 15px !important;
+                        border-radius: 4px;
+
+                        &:hover {
+                            box-shadow: none;
+                        }
                     }
 
                     .department-name .Dropdown-control {
-                        cursor: pointer;
-                        width: 430px !important;
-                        padding: 20px 0px 20px 20px !important;
+                        width: 260px !important;
                     }
 
                     .city .Dropdown-control {
-                        cursor: pointer;
-                        width: 150px !important;
-                        padding: 20px 0px 20px 20px !important;
+                        width: 180px !important;
+                    }
+
+                    .Dropdown-arrow {
+                        top: 23px;
+                    }
+
+                    .Dropdown-menu {
+                        margin-top: 6px;
+                        border: 1px solid #cfcfcf;
+                        box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.1);
+                        border-radius: 4px;
                     }
                 }
 
                 button {
+                    padding: 15px 0px 15px !important;
                     cursor: pointer;
                     background: #5a5ade;
                     border: none;
@@ -85,7 +104,9 @@
                     border-radius: 4px;
                     transition: all 0.23s ease-in-out;
                     font-weight: 600;
-                    height: 60px;
+                    font-size: 1em;
+
+                    // height: 60px;
                     width: 160px;
                     margin-top: 17px;
                     font-family: "font700";
@@ -104,16 +125,23 @@
     max-width: 960px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 10px;
+
+    .not-found {
+        margin-top: 20px;
+        color: #666;
+        font-size: 1.3em;
+        text-align: center;
+    }
 
     .item {
-        border: 1px solid #aaa;
-        border-radius: 5px;
-        padding: 20px 30px;
+        border-bottom: 1px solid #cfcfcf;
+        padding: 20px 0;
+        margin: 0 20px;
 
         .name {
-            font-family: $font-900;
-            font-size: 1.7em;
+            font-family: $font-700;
+            font-size: 1.5em;
             font-weight: 500;
         }
 
@@ -131,18 +159,22 @@
             margin-top: 25px;
 
             .title {
-                font-family: $font-900;
+                font-family: $font-700;
                 font-size: 1.2em;
             }
 
             .our,
             .origin {
                 display: inline-block;
-                background: #eee;
-                padding: 10px;
+                font-weight: 600;
                 border-radius: 5px;
                 margin-top: 10px;
-                font-size: 1.2em;
+                font-size: 1.1em;
+
+                a {
+                    color: #3f3fd9;
+                    text-decoration: none;
+                }
             }
         }
     }

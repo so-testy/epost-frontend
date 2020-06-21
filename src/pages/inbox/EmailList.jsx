@@ -4,20 +4,20 @@ import classname from 'classname';
 const EmailList = ({ emailList, currentEmailId, setEmail }) => {
     return (
         <ul className="email-list">
-            {emailList.map(({ id, from, date, subject, unread }) => {
+            {emailList.map(({ _id, shortFrom, shortTo, date, subject, unread, type }) => {
                 return (
                     <li
                         className={classname({
                             'email-list__email': true,
                             'email-list__email--unread': unread,
-                            'email-list__email--active': currentEmailId === id,
+                            'email-list__email--active': currentEmailId === _id,
                         })}
-                        key={id}
-                        onClick={(e) => setEmail(id)}
+                        key={_id}
+                        onClick={(e) => setEmail(_id)}
                     >
                         <div className="email__title">
                             <span>
-                                {from}
+                                {type === 'incoming' ? shortFrom : shortTo}
                                 {unread && <div className="email__unread-mark"></div>}
                             </span>
                             <div className="email__date">{date}</div>

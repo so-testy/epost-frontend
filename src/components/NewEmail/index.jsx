@@ -1,13 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
 
 import './index.scss';
 
 Modal.setAppElement('#root');
 
-const NewEmail = ({ closeModal, isModalOpen, sendEmail }) => {
-    const [to, setTo] = useState('');
+const NewEmail = ({ closeModal, isModalOpen, sendEmail, toAddress }) => {
+    const [to, setTo] = useState(toAddress || '');
     const [subject, setSubject] = useState('');
     const [text, setText] = useState('');
 
